@@ -1,0 +1,420 @@
+/*==============================================================*/
+/* DBMS name:      PostgreSQL 8                                 */
+/* Created on:     13/06/2021 10:57:34                          */
+/*==============================================================*/
+
+
+drop index RELATIONSHIP_1_FK;
+
+drop index BARCO_PESQUERO_PK;
+
+drop table BARCO_PESQUERO;
+
+drop index RELATIONSHIP_11_FK;
+
+drop index DETALLE_INSUMOS_PK;
+
+drop table DETALLE_INSUMOS;
+
+drop index RELATIONSHIP_10_FK;
+
+drop index RELATIONSHIP_9_FK;
+
+drop index FACTURA_BARCO_PK;
+
+drop table FACTURA_BARCO;
+
+drop index RELATIONSHIP_14_FK;
+
+drop index FAENA_PK;
+
+drop table FAENA;
+
+drop index RELATIONSHIP_16_FK;
+
+drop index RELATIONSHIP_12_FK;
+
+drop index FORMULARIO_PK;
+
+drop table FORMULARIO;
+
+drop index RELATIONSHIP_8_FK;
+
+drop index RELATIONSHIP_7_FK;
+
+drop index MANTENIMIENTO_PK;
+
+drop table MANTENIMIENTO;
+
+drop index RELATIONSHIP_3_FK;
+
+drop index PERMISO_DE_TRIPULANTE_PK;
+
+drop table PERMISO_DE_TRIPULANTE;
+
+drop index PUERTO_PESQUERO_PK;
+
+drop table PUERTO_PESQUERO;
+
+drop index RELATIONSHIP_2_FK;
+
+drop index TRIPULANTES_PK;
+
+drop table TRIPULANTES;
+
+drop index RELATIONSHIP_13_FK;
+
+drop index ZARPE_PK;
+
+drop table ZARPE;
+
+/*==============================================================*/
+/* Table: BARCO_PESQUERO                                        */
+/*==============================================================*/
+create table BARCO_PESQUERO (
+   CODI_BARCO           SERIAL               not null,
+   CODIGO_PUERTO        INT4                 null,
+   NOMBRE_BARCO         VARCHAR(30)          not null,
+   CARACTERISTICA_BARCO TEXT                 null,
+   COLOR_BARCO          CHAR(15)             null,
+   TONELAJE_BARCO       DECIMAL              not null,
+   CAPITAN_BARCO        CHAR(40)             not null,
+   BANDERA_BARCO        CHAR(25)             not null,
+   NUMERO_BODEGAS       INT4                 not null,
+   FECHA_ULTIMO_MANTENIMIENTO DATE                 not null,
+   constraint PK_BARCO_PESQUERO primary key (CODI_BARCO)
+);
+
+/*==============================================================*/
+/* Index: BARCO_PESQUERO_PK                                     */
+/*==============================================================*/
+create unique index BARCO_PESQUERO_PK on BARCO_PESQUERO (
+CODI_BARCO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_1_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_1_FK on BARCO_PESQUERO (
+CODIGO_PUERTO
+);
+
+/*==============================================================*/
+/* Table: DETALLE_INSUMOS                                       */
+/*==============================================================*/
+create table DETALLE_INSUMOS (
+   CODIGO_INSUMO        SERIAL               not null,
+   CODIGO_MANTENIMIENTO INT4                 null,
+   NOMBRE_INSUMO        VARCHAR(15)          not null,
+   DETALLES_INSUMO      VARCHAR(100)         not null,
+   TOTAL_INSUMO         MONEY                not null,
+   constraint PK_DETALLE_INSUMOS primary key (CODIGO_INSUMO)
+);
+
+/*==============================================================*/
+/* Index: DETALLE_INSUMOS_PK                                    */
+/*==============================================================*/
+create unique index DETALLE_INSUMOS_PK on DETALLE_INSUMOS (
+CODIGO_INSUMO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_11_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_11_FK on DETALLE_INSUMOS (
+CODIGO_MANTENIMIENTO
+);
+
+/*==============================================================*/
+/* Table: FACTURA_BARCO                                         */
+/*==============================================================*/
+create table FACTURA_BARCO (
+   CODIGO_FACTURA       SERIAL               not null,
+   CODIGO_PUERTO        INT4                 null,
+   CODI_BARCO           INT4                 null,
+   FECHA_FACTURA        DATE                 not null,
+   DESCRIPCION_FACTURA  TEXT                 not null,
+   SUBTOTAL_FACTURA     MONEY                not null,
+   TOTAL_FACTURA        MONEY                not null,
+   FORMA_PAGO           VARCHAR(20)          not null,
+   constraint PK_FACTURA_BARCO primary key (CODIGO_FACTURA)
+);
+
+/*==============================================================*/
+/* Index: FACTURA_BARCO_PK                                      */
+/*==============================================================*/
+create unique index FACTURA_BARCO_PK on FACTURA_BARCO (
+CODIGO_FACTURA
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_9_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_9_FK on FACTURA_BARCO (
+CODIGO_PUERTO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_10_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_10_FK on FACTURA_BARCO (
+CODI_BARCO
+);
+
+/*==============================================================*/
+/* Table: FAENA                                                 */
+/*==============================================================*/
+create table FAENA (
+   CODIGO_FAENA         SERIAL               not null,
+   CODIGO_ZARPE         INT4                 null,
+   NOMBRE_FAENA         VARCHAR(15)          not null,
+   ZONA_FAENA           VARCHAR(30)          not null,
+   DISTANCIA_PERMITIDA  FLOAT8               not null,
+   DESCRIPCION_FAENA    TEXT                 null,
+   constraint PK_FAENA primary key (CODIGO_FAENA)
+);
+
+/*==============================================================*/
+/* Index: FAENA_PK                                              */
+/*==============================================================*/
+create unique index FAENA_PK on FAENA (
+CODIGO_FAENA
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_14_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_14_FK on FAENA (
+CODIGO_ZARPE
+);
+
+/*==============================================================*/
+/* Table: FORMULARIO                                            */
+/*==============================================================*/
+create table FORMULARIO (
+   CODIGO_FORMULARIO    SERIAL               not null,
+   CODIGO_PUERTO        INT4                 null,
+   CODI_BARCO           INT4                 null,
+   TONELADAS            FLOAT8               not null,
+   ESPECIES             CHAR(15)             not null,
+   NUMERO_CONGELADORES  INT4                 not null,
+   EMPRESA_RECEPTORA    CHAR(20)             not null,
+   constraint PK_FORMULARIO primary key (CODIGO_FORMULARIO)
+);
+
+/*==============================================================*/
+/* Index: FORMULARIO_PK                                         */
+/*==============================================================*/
+create unique index FORMULARIO_PK on FORMULARIO (
+CODIGO_FORMULARIO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_12_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_12_FK on FORMULARIO (
+CODIGO_PUERTO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_16_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_16_FK on FORMULARIO (
+CODI_BARCO
+);
+
+/*==============================================================*/
+/* Table: MANTENIMIENTO                                         */
+/*==============================================================*/
+create table MANTENIMIENTO (
+   CODIGO_MANTENIMIENTO SERIAL               not null,
+   CODIGO_PUERTO        INT4                 null,
+   CODI_BARCO           INT4                 null,
+   TECNICO_PRINCIPAL_MANTENIMIENTO VARCHAR(30)          not null,
+   TIPO_SERVICIO        CHAR(20)             not null,
+   COSTO_MANTENIMIENTO  MONEY                not null,
+   constraint PK_MANTENIMIENTO primary key (CODIGO_MANTENIMIENTO)
+);
+
+/*==============================================================*/
+/* Index: MANTENIMIENTO_PK                                      */
+/*==============================================================*/
+create unique index MANTENIMIENTO_PK on MANTENIMIENTO (
+CODIGO_MANTENIMIENTO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_7_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_7_FK on MANTENIMIENTO (
+CODIGO_PUERTO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_8_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_8_FK on MANTENIMIENTO (
+CODI_BARCO
+);
+
+/*==============================================================*/
+/* Table: PERMISO_DE_TRIPULANTE                                 */
+/*==============================================================*/
+create table PERMISO_DE_TRIPULANTE (
+   CODIGO_PERMISO       SERIAL               not null,
+   CEDULA_TRIPULANTE    VARCHAR(10)          null,
+   FECHA_EMISION        DATE                 not null,
+   FECHA_CADUCIDAD      DATE                 not null,
+   constraint PK_PERMISO_DE_TRIPULANTE primary key (CODIGO_PERMISO)
+);
+
+/*==============================================================*/
+/* Index: PERMISO_DE_TRIPULANTE_PK                              */
+/*==============================================================*/
+create unique index PERMISO_DE_TRIPULANTE_PK on PERMISO_DE_TRIPULANTE (
+CODIGO_PERMISO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_3_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_3_FK on PERMISO_DE_TRIPULANTE (
+CEDULA_TRIPULANTE
+);
+
+/*==============================================================*/
+/* Table: PUERTO_PESQUERO                                       */
+/*==============================================================*/
+create table PUERTO_PESQUERO (
+   CODIGO_PUERTO        SERIAL               not null,
+   NOMBRE_PUERTO        VARCHAR(30)          not null,
+   DIRECCION_PUERTO     VARCHAR(30)          null,
+   REPREGERENTE_PUERTO  VARCHAR(40)          not null,
+   TELEFONO_PUERTO      VARCHAR(10)          not null,
+   PAGINAWEB_PUERTO     VARCHAR(50)          null,
+   CORREO_PUERTO        VARCHAR(40)          not null,
+   constraint PK_PUERTO_PESQUERO primary key (CODIGO_PUERTO)
+);
+
+/*==============================================================*/
+/* Index: PUERTO_PESQUERO_PK                                    */
+/*==============================================================*/
+create unique index PUERTO_PESQUERO_PK on PUERTO_PESQUERO (
+CODIGO_PUERTO
+);
+
+/*==============================================================*/
+/* Table: TRIPULANTES                                           */
+/*==============================================================*/
+create table TRIPULANTES (
+   CEDULA_TRIPULANTE    VARCHAR(10)          not null,
+   CODI_BARCO           INT4                 not null,
+   NOMBRE_TRIPULANTE    VARCHAR(40)          not null,
+   DIRECCION_TRIPULANTE VARCHAR(45)          not null,
+   TELEFONO_TRIPULANTE  VARCHAR(10)          not null,
+   EMAIL_TRIPULANTE     VARCHAR(45)          not null,
+   LABOR_TRIPULANTE     VARCHAR(20)          not null,
+   constraint PK_TRIPULANTES primary key (CEDULA_TRIPULANTE)
+);
+
+/*==============================================================*/
+/* Index: TRIPULANTES_PK                                        */
+/*==============================================================*/
+create unique index TRIPULANTES_PK on TRIPULANTES (
+CEDULA_TRIPULANTE
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_2_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_2_FK on TRIPULANTES (
+CODI_BARCO
+);
+
+/*==============================================================*/
+/* Table: ZARPE                                                 */
+/*==============================================================*/
+create table ZARPE (
+   CODIGO_ZARPE         SERIAL               not null,
+   CODI_BARCO           INT4                 null,
+   FECHA_SALIDA         DATE                 not null,
+   FECHA_LLEGADA        DATE                 not null,
+   TONELAJE_CAPTURADO   FLOAT8               not null,
+   OBSERVACION_ZARPE    TEXT                 null,
+   constraint PK_ZARPE primary key (CODIGO_ZARPE)
+);
+
+/*==============================================================*/
+/* Index: ZARPE_PK                                              */
+/*==============================================================*/
+create unique index ZARPE_PK on ZARPE (
+CODIGO_ZARPE
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_13_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_13_FK on ZARPE (
+CODI_BARCO
+);
+
+alter table BARCO_PESQUERO
+   add constraint FK_BARCO_PE_RELATIONS_PUERTO_P foreign key (CODIGO_PUERTO)
+      references PUERTO_PESQUERO (CODIGO_PUERTO)
+      on delete restrict on update restrict;
+
+alter table DETALLE_INSUMOS
+   add constraint FK_DETALLE__RELATIONS_MANTENIM foreign key (CODIGO_MANTENIMIENTO)
+      references MANTENIMIENTO (CODIGO_MANTENIMIENTO)
+      on delete restrict on update restrict;
+
+alter table FACTURA_BARCO
+   add constraint FK_FACTURA__RELATIONS_BARCO_PE foreign key (CODI_BARCO)
+      references BARCO_PESQUERO (CODI_BARCO)
+      on delete restrict on update restrict;
+
+alter table FACTURA_BARCO
+   add constraint FK_FACTURA__RELATIONS_PUERTO_P foreign key (CODIGO_PUERTO)
+      references PUERTO_PESQUERO (CODIGO_PUERTO)
+      on delete restrict on update restrict;
+
+alter table FAENA
+   add constraint FK_FAENA_RELATIONS_ZARPE foreign key (CODIGO_ZARPE)
+      references ZARPE (CODIGO_ZARPE)
+      on delete restrict on update restrict;
+
+alter table FORMULARIO
+   add constraint FK_FORMULAR_RELATIONS_PUERTO_P foreign key (CODIGO_PUERTO)
+      references PUERTO_PESQUERO (CODIGO_PUERTO)
+      on delete restrict on update restrict;
+
+alter table FORMULARIO
+   add constraint FK_FORMULAR_RELATIONS_BARCO_PE foreign key (CODI_BARCO)
+      references BARCO_PESQUERO (CODI_BARCO)
+      on delete restrict on update restrict;
+
+alter table MANTENIMIENTO
+   add constraint FK_MANTENIM_RELATIONS_PUERTO_P foreign key (CODIGO_PUERTO)
+      references PUERTO_PESQUERO (CODIGO_PUERTO)
+      on delete restrict on update restrict;
+
+alter table MANTENIMIENTO
+   add constraint FK_MANTENIM_RELATIONS_BARCO_PE foreign key (CODI_BARCO)
+      references BARCO_PESQUERO (CODI_BARCO)
+      on delete restrict on update restrict;
+
+alter table PERMISO_DE_TRIPULANTE
+   add constraint FK_PERMISO__RELATIONS_TRIPULAN foreign key (CEDULA_TRIPULANTE)
+      references TRIPULANTES (CEDULA_TRIPULANTE)
+      on delete restrict on update restrict;
+
+alter table TRIPULANTES
+   add constraint FK_TRIPULAN_RELATIONS_BARCO_PE foreign key (CODI_BARCO)
+      references BARCO_PESQUERO (CODI_BARCO)
+      on delete restrict on update restrict;
+
+alter table ZARPE
+   add constraint FK_ZARPE_RELATIONS_BARCO_PE foreign key (CODI_BARCO)
+      references BARCO_PESQUERO (CODI_BARCO)
+      on delete restrict on update restrict;
+
