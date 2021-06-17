@@ -441,7 +441,79 @@ insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_
 insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_barco,color_barco,tonelaje_barco,capitan_barco,numero_bodegas,fecha_ultimo_mantenimiento)values
 (1004,1111,'paraiso','barco remodelado','verde','410','Mario Casas','Ecuaoriana',5,'12/02/2021');
 
+ /*==============================================================*/
+ /* Insercion de datos,tabla tripulantes                         */
+ /*==============================================================*/
+ 
+ insert into tripulantes(cedula_tripulante,codi_barco,nombre_tripulante,direccion_tripulante,telefono_tripulante,email_tripulante) values
+('1315821257',1008,'Cesar Augusto Zambrano','La pradera',0994104859,'cesar@gmail.com','cocinero');
+
+insert into tripulantes(cedula_tripulante,codi_barco,nombre_tripulante,direccion_tripulante,telefono_tripulante,email_tripulante) values
+('13178556253',1005,'Kenny Santos Cedeno','La Montalvan',0987204961,'keni_sc@gmail.com','pescador');
+
+insert into tripulantes(cedula_tripulante,codi_barco,nombre_tripulante,direccion_tripulante,telefono_tripulante,email_tripulante) values
+('1316842151',1001,'Erick Mendoza','Altagracia',0945987450,'eric-m@gmail.com','jefe de maquina');
+
+insert into tripulantes(cedula_tripulante,codi_barco,nombre_tripulante,direccion_tripulante,telefono_tripulante,email_tripulante) values
+('1317481027',1004,'Maicol Alcivar','Laaurora',0936456822,'maicol@gmail.com','pescador');
+
+insert into tripulantes(cedula_tripulante,codi_barco,nombre_tripulante,direccion_tripulante,telefono_tripulante,email_tripulante) values
+('1315113023',1006,'Dennis Peña','cuba',0999647820,'peña@gmail.com','pescador');
+
+insert into tripulantes(cedula_tripulante,codi_barco,nombre_tripulante,direccion_tripulante,telefono_tripulante,email_tripulante) values
+('145260121',1006,'Bryan Mero','tarqui',0984789602,'bryan_77@gmail.com','jefe de pesca');
+
+/*==============================================================*/
+/* Insercion de datos,tabla zarpe                               */
+/*==============================================================*/
 
 
+
+insert into zarpe(codigo_zarpe,codi_barco,fecha_salida,fecha_llegada,tonelaje_capturado,observacion_zarpe)values
+(02,1001,'01/01/2021','15/01/2021',45,'arribo correcto');
+
+insert into zarpe(codigo_zarpe,codi_barco,fecha_salida,fecha_llegada,tonelaje_capturado,observacion_zarpe)values
+(03,1002,'01/03/2021','10/01/2021',30,'arribo correcto');
+
+insert into zarpe(codigo_zarpe,codi_barco,fecha_salida,fecha_llegada,tonelaje_capturado,observacion_zarpe)values
+(04,1003,'28/12/2020','09/01/2021',40,'arribo correcto');
+
+insert into zarpe(codigo_zarpe,codi_barco,fecha_salida,fecha_llegada,tonelaje_capturado,observacion_zarpe)values
+(05,1004,'05/01/2021','22/01/2021',60,'arribo correcto');
+
+insert into zarpe(codigo_zarpe,codi_barco,fecha_salida,fecha_llegada,tonelaje_capturado,observacion_zarpe)values
+(06,1005,'06/01/2021','14/01/2021',55,'arribo correcto');
+
+
+/*==============================================================*/
+/* Insercion de datos,tabla faena                               */
+/*==============================================================*/
+
+insert into faena(codigo_faena,codigo_zarpe,nombre_faena,zona_faena,distancia_permitida,descripcion_faena)values
+(3001,04,'de altura','costa del pacifico',150,'pesca a mediana escala');
+
+insert into faena(codigo_faena,codigo_zarpe,nombre_faena,zona_faena,distancia_permitida,descripcion_faena)values
+(3002,06,'industrial','costa de Manta',150,'pesca a gran escala');
+
+
+/*==============================================================*/
+/* Insercion de datos,tabla formulario                          */
+/*==============================================================*/
+
+insert into formulario(codigo_formulario,codigo_puerto,codi_barco,toneladas,especies,numero_congeladores,empresa_receptora)values
+(7001,1111,1008,40,'atunes',10,'Conservas Isabel S.A');
+
+insert into formulario(codigo_formulario,codigo_puerto,codi_barco,toneladas,especies,numero_congeladores,empresa_receptora)values
+(7002,1111,1001,45,'sardinas',7,'La Fabril S.A');
+
+/*==============================================================*/
+/* Insercion de datos,tabla permiso_de_tripulante               */
+/*==============================================================*/
+
+insert into permiso_de_tripulante(codigo_permiso,cedula_tripulante,fecha_emision,fecha_caducidad)values
+(7001,1205478561,'01/08/2020','01/07/2021')
+
+insert into permiso_de_tripulante(codigo_permiso,cedula_tripulante,fecha_emision,fecha_caducidad)values
+(7002,1204569865,'10/01/2020','10/01/2021')
 
 
