@@ -418,7 +418,12 @@ alter table ZARPE
       references BARCO_PESQUERO (CODI_BARCO)
       on delete restrict on update restrict;
       
+      /*==============================================================*/
+      /* Insercion de datos,tabla puerto_pesquero                     */
+      /*==============================================================*/
       
+      insert into puerto_pesquero(codigo_puerto,nombre_puerto,direccion_puerto,representante_puerto,telefono_puerto,paginaweb_puerto,correo_puerto)values
+(1111,'puerto pesquero jaramijo','calle norte jaramijo','Rober Moreira Centeno',0981285279,'http://www.puertojaramijo.com','puertojaramijo@gmail.com');
       
       
       /*==============================================================*/
@@ -435,4 +440,8 @@ insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_
 
 insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_barco,color_barco,tonelaje_barco,capitan_barco,numero_bodegas,fecha_ultimo_mantenimiento)values
 (1004,1111,'paraiso','barco remodelado','verde','410','Mario Casas','Ecuaoriana',5,'12/02/2021');
+
+
+
+
 
