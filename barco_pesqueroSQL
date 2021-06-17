@@ -417,4 +417,22 @@ alter table ZARPE
    add constraint FK_ZARPE_RELATIONS_BARCO_PE foreign key (CODI_BARCO)
       references BARCO_PESQUERO (CODI_BARCO)
       on delete restrict on update restrict;
+      
+      
+      
+      
+      /*==============================================================*/
+      /* Insercion de datos,tabla barco_pesquero                      */
+      /*==============================================================*/
+      insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_barco,color_barco,tonelaje_barco,capitan_barco,numero_bodegas,fecha_ultimo_mantenimiento)values
+(1001,1111,'estrella polar','barco remodelado','blanco','300','yandri joel zambrano vasquez','Ecuatoriana',6,'14/05/2021');
+
+insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_barco,color_barco,tonelaje_barco,capitan_barco,numero_bodegas,fecha_ultimo_mantenimiento)values
+(1002,1111,'el fantasma','barco remodelado','cafe','155','jose vasquez','Ecuaoriana',6,'11/02/2021');
+
+insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_barco,color_barco,tonelaje_barco,capitan_barco,numero_bodegas,fecha_ultimo_mantenimiento)values
+(1003,1111,'the king','embarcacion atunera','celeste','450','Mario Macias','Ecuatoriana',8,'12/20/2020');
+
+insert into barco_pesquero(codi_barco,codigo_puerto,nombre_barco,caracteristica_barco,color_barco,tonelaje_barco,capitan_barco,numero_bodegas,fecha_ultimo_mantenimiento)values
+(1004,1111,'paraiso','barco remodelado','verde','410','Mario Casas','Ecuaoriana',5,'12/02/2021');
 
