@@ -546,7 +546,7 @@ insert into factura_barco(codigo_factura,codigo_puerto,codi_barco,fecha_factura,
 (6003,1111,1005,'20/04/2021','cobro por la estadia del barco pesquero en puerto 1 dia',45.00,52.00,'efectivo');
 
 /*==============================================================*/
-/* Insercion de datos,consulta 1                                */
+/*                    consulta 1                                */
 /*==============================================================*/
 SELECT 
 formulario.empresa_receptora,
@@ -560,7 +560,7 @@ on formulario.codi_barco=barco_pesquero.codi_barco
 order by formulario.toneladas desc;
 
 /*==============================================================*/
-/* Insercion de datos,consulta 2                                */
+/*                    consulta 2                                */
 /*==============================================================*/
 SELECT 
 tripulantes.nombre_tripulante,
@@ -576,7 +576,7 @@ order by fecha_caducidad asc ;
 
 
 /*==============================================================*/
-/* Insercion de datos,consulta 3                                */
+/*                    consulta 3                                */
 /*==============================================================*/
 SELECT 
   barco_pesquero.nombre_barco,
@@ -592,7 +592,7 @@ order by tonelaje_capturado desc;
 
 
 /*==============================================================*/
-/* Insercion de datos,consulta 4                                */
+/*                    consulta 4                                */
 /*==============================================================*/
 SELECT 
   mantenimiento.tipo_servicio,
