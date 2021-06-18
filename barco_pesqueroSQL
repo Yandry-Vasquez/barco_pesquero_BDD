@@ -516,4 +516,32 @@ insert into permiso_de_tripulante(codigo_permiso,cedula_tripulante,fecha_emision
 insert into permiso_de_tripulante(codigo_permiso,cedula_tripulante,fecha_emision,fecha_caducidad)values
 (7002,1204569865,'10/01/2020','10/01/2021')
 
+/*==============================================================*/
+/* Insercion de datos,tabla mantenimiento                       */
+/*==============================================================*/
+
+insert into mantenimiento(codigo_mantenimiento,codigo_puerto,codi_barco,tecnico_principal_mantenimiento,tipo_servicio,costo_mantenimiento)values
+(5001,1111,1009,'Leovo Arteaga','mantenimiento bodega',105.00);
+
+insert into mantenimiento(codigo_mantenimiento,codigo_puerto,codi_barco,tecnico_principal_mantenimiento,tipo_servicio,costo_mantenimiento)values
+(5002,1111,1001,'Teodoro Bozada','resane de huecos',65.00);
+
+/*==============================================================*/
+/* Insercion de datos,tabla detalles_insumo               */
+/*==============================================================*/
+insert into detalle_insumo(codigo_insumo,codigo_mantenimiento,nombre_insumo,detalles_insumo,total_insumo)values
+(1101,5001,'fibra','fibra para mantenimiento',20.00);
+
+insert into detalle_insumo(codigo_insumo,codigo_mantenimiento,nombre_insumo,detalles_insumo,total_insumo)values
+(1102,5002,'poliuterano','para relleno de grandes cavidades',45.00);
+
+/*==============================================================*/
+/* Insercion de datos,tabla factura_barco                       */
+/*==============================================================*/
+
+insert into factura_barco(codigo_factura,codigo_puerto,codi_barco,fecha_factura,descripcion_factura,subtotal_factura,total_factura,forma_pago)values
+(6002,1111,1009,'14/03/2021','cobro por la estadia del barco pesquero',100.00,112.00,'transferencia');
+
+insert into factura_barco(codigo_factura,codigo_puerto,codi_barco,fecha_factura,descripcion_factura,subtotal_factura,total_factura,forma_pago)values
+(6003,1111,1005,'20/04/2021','cobro por la estadia del barco pesquero en puerto 1 dia',45.00,52.00,'efectivo');
 
